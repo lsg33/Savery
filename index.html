@@ -188,6 +188,19 @@
             document.getElementById('gameSelectModal').style.display = 'none';
             document.getElementById('policyModal').style.display = 'none';
         }
+        if (hasAgreed && didToken === true) {
+            const validToken = await getToken();
+            const loggedToken = getCookie("didTokens");
+            if (loggedToken !== validToken) {
+                document.getElementById('tokenModal').style.display = 'block';
+                document.getElementById('gameSelectModal').style.display = 'none';
+                document.getElementById('policyModal').style.display = 'none';
+            } else {
+                document.getElementById('policyModal').style.display = 'none';
+                document.getElementById('gameSelectModal').style.display = 'block';
+                document.getElementById('tokenModal').style.display = 'none';
+            }
+        }
 
         document.getElementById('agreeButton').onclick = function() {
             localStorage.setItem('agree', 'true');
@@ -203,7 +216,7 @@
                 alert("Token is valid! Proceeding to game selection.");
                 document.getElementById('tokenModal').style.display = 'none';
                 document.getElementById('gameSelectModal').style.display = 'block'; 
-                setCookie('didTokens', 'true', 2);
+                setCookie('didTokens', 'true', 24);
             } else {
                 alert('Invalid token. Please try again.');
             }
