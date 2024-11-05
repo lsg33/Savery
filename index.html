@@ -176,7 +176,7 @@
         }
 
         const hasAgreed = localStorage.getItem('agree');
-        const didToken = getCookie('didTokens');
+        const didToken = getCookie('didTokenss');
 
         if (!hasAgreed) {
             document.getElementById('policyModal').style.display = 'block';
@@ -199,11 +199,13 @@
             const tokenInput = document.getElementById('tokenInput').value;
             const tokenReal = await getToken();
             
-            if (tokenInput === tokenReal) {  // Removed .value
+            if (tokenInput && tokenInput === tokenReal) {  // Check if input exists and matches real token
                 alert("Token is valid! Proceeding to game selection.");
                 document.getElementById('tokenModal').style.display = 'none';
                 document.getElementById('gameSelectModal').style.display = 'block'; 
-                setCookie('didTokens', 'true', 2);
+                setCookie('didTokens', 'true', 2); // Set cookie only if the token is valid
+            } else if (!tokenInput) {
+                alert('Please enter a token before submitting.');
             } else {
                 alert('Invalid token. Please try again.');
             }
