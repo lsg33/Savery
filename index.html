@@ -194,12 +194,11 @@
             if (loggedToken !== validToken) {
                 document.getElementById('tokenModal').style.display = 'block';
                 document.getElementById('gameSelectModal').style.display = 'none';
-                document.getElementById('policyModal').style.display = 'none';
             } else {
-                document.getElementById('policyModal').style.display = 'none';
                 document.getElementById('gameSelectModal').style.display = 'block';
                 document.getElementById('tokenModal').style.display = 'none';
             }
+            document.getElementById('policyModal').style.display = 'none';
         }
 
         document.getElementById('agreeButton').onclick = function() {
