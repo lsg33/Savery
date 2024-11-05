@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slavery Games</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        iframe {
+            flex-grow: 1;
+            border: none;
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px; /* Padding for better button size */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #007bff; /* Modern button color */
+            color: white; /* Text color */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+            transform: scale(1.05); /* Slight scale effect */
+        }
+        button:active {
+            transform: scale(0.95); /* Slight shrink effect on click */
+        }
+
+        img {
+            margin-top: 10px;
+            padding: 10px 20px; /* Padding for better button size */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #007bff; /* Modern button color */
+            color: white; /* Text color */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+            margin: 0.5rem;
+            width: 125px; 
+            height: 125px;
+        }
+        img:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+            transform: scale(1.05); /* Slight scale effect */
+        }
+        img:active {
+            transform: scale(0.95); /* Slight shrink effect on click */
+        }
+        .tab-content {
+            display: none; /* Hide all tab content by default */
+            padding: 20px;
+            background-color: white;
+            border: 0px solid #ccc;
+            margin-top: 10px;
+        }
+        .active {
+            display: block; /* Show active tab content */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <iframe id="resultFrame" sandbox="allow-same-origin allow-scripts"></iframe>
+    </div>
+    <div id="policyModal" class="modal">
+        <div class="modal-content">
+            <h2>Policy Agreement</h2>
+            <p>Please read and agree to the policy to continue.</p>
+            <p>By using this website, you agree to be fully responsible and accountable for your actions and usage of the site. You acknowledge that any content you access, create, or share is your own responsibility and that you will adhere to all applicable laws and regulations. The website owners are not liable for any actions or consequences that arise from your use of the site. By continuing, you agree to hold yourself accountable for all activities performed on this site.</p>
+            <button id="agreeButton">Agree</button>
+            <button id="disagreeButton">Disagree</button>
+        </div>
+    </div>
+    <div id="tokenModal" class="modal">
+        <div class="modal-content">
+            <h2>Access Token</h2>
+            <p>Please enter the token you got from the owner</p>
+            <input id="tokenInput" placeholder="e.g jaye3f4n2hsgf3">
+            <button id="submitBTN">submit</button>
+        </div>
+    </div>
+    <div id="gameSelectModal" class="modal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <h2>Game Service</h2>
+                <p>Please select a game website.</p>
+                <p>Please keep in mind that this is in beta and its not perfect.</p>
+                <p>If you have problems then please contact the developer</p>
+                <button onclick="openTab(event, 'gamesStuff')">Games</button>
+                <button onclick="openTab(event, 'socialmediaStuff')">Social Media</button>
+            </div>
+
+            <div id="gamesStuff" class="tab-content active">
+                <img id="crazyGames" style="width: 125px; height: 125px;" src="https://files.crazygames.com/assets/2022/PNG/Ziggy_Default.png">
+                <img id="coolmethgains" style="width: 125px; height: 125px;" src="https://www.coolmathgames.com/themes/custom/coolmath/logo-stacked.svg">
+                <img id="freezenova" style="width: 125px; height: 125px;" src="https://play-lh.googleusercontent.com/ax5bz_85P7kcFiLfLCuYv9x8xQOaPXRmTtAfoXa92RE2MBzogZMa_lJlrQkTzwe4a4Js">        
+                <img id="gfcenow" style="width: 125px; height: 125px;" src="https://w7.pngwing.com/pngs/532/947/png-transparent-graphics-cards-video-adapters-nvidia-optimus-geforce-fermi-nvidia-electronics-company-text-thumbnail.png">
+            </div>
+
+            <div id="socialmediaStuff" class="tab-content">
+                <img id="snapChat" style="width: 125px; height: 125px;" src="https://www.pngpacks.com/uploads/data/290/IMG_Wb1TKbunLDnM.png">
+                <img id="Instagram" style="width: 125px; height: 125px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShSW8GGrxy-WZfbdkQjXJsG6H5_WDr2HG2XQ&s">
+                <img id="tiktok" style="width: 125px; height: 125px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyvyjvsjNeg4G1AZ6lubb6n4BuIv_XW-vKSA&s">
+                <img id="Reddit" style="width: 125px; height: 125px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN2JTQTQiRTBOal06BSCVDTwJTP5IgBwoJSw&s">
+                <img id="discord" style="width: 125px; height: 125px;" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png">
+                <img id="youtube" style="width: 125px; height: 125px;" src="https://w7.pngwing.com/pngs/936/468/png-transparent-youtube-logo-youtube-logo-computer-icons-subscribe-angle-rectangle-airplane-thumbnail.png">
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        function openTab(event, tabName) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Show the clicked tab content
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        document.addEventListener('keydown', function(event) { 
+            if (event.ctrlKey && event.key === 'p') 
+            {
+                event.preventDefault(); 
+                window.location.href = 'https://app.schoology.com'; 
+                } 
+            });
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        const hasAgreed = localStorage.getItem('agree');
+        const didToken = getCookie('didToken');
+
+        if (!hasAgreed) {
+            document.getElementById('policyModal').style.display = 'block';
+        } else if (hasAgreed) {
+            document.getElementById('gameSelectModal').style.display = 'block';
+        } 
+        if (hasAgreed && !didToken) {
+            document.getElementById('tokenModal').style.display = 'block';
+            document.getElementById('gameSelectModal').style.display = 'none';
+            document.getElementById('policyModal').style.display = 'none';
+        }
+
+        document.getElementById('agreeButton').onclick = function() {
+            localStorage.setItem('agree', 'true');
+            document.getElementById('policyModal').style.display = 'none';
+            document.getElementById('tokenModal').style.display = 'block'; // Show token modal
+        };
+
+        document.getElementById('submitBTN').onclick = async function() {
+            const tokenInput = document.getElementById('tokenInput').value;
+            const tokenReal = await getToken();
+            
+            if (tokenInput === tokenReal) {  // Removed .value
+                alert("Token is valid! Proceeding to game selection.");
+                document.getElementById('tokenModal').style.display = 'none';
+                document.getElementById('gameSelectModal').style.display = 'block'; 
+                setCookie('didToken', 'true', 24);
+            } else {
+                alert('Invalid token. Please try again.');
+            }
+        };
+
+        async function getToken() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/lsg33/TEXSTT/refs/heads/main/stets');  // Use the 'raw' URL to fetch text content directly
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const data = await response.text();
+                console.log('Fetched data:', data);
+                return data.trim(); // Return the fetched token, trimming whitespace
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+                return null; // Return null if there's an error
+            }
+        }
+
+
+
+        ///the other games
+        document.getElementById('crazyGames').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://crazygames.com');
+        };
+
+        document.getElementById('freezenova').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://freezenova.games');
+        };
+
+        document.getElementById('coolmethgains').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://coolmathgames.com');
+        };
+
+        document.getElementById('gfcenow').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://play.geforcenow.com');
+        };
+
+        /// social media
+
+        document.getElementById('snapChat').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://snapchat.com');
+        };
+
+        document.getElementById('Instagram').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://instagram.com');
+        };
+
+        document.getElementById('tiktok').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://tiktok.com');
+        };
+
+        document.getElementById('Reddit').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://reddit.com');
+        };
+
+        document.getElementById('discord').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://discord.com');
+        };
+
+        document.getElementById('youtube').onclick = function() {
+            document.getElementById('gameSelectModal').style.display = 'none';
+            fetchData('https://youtube.com');
+        };
+
+        function fetchData(url) {
+            fetch(`https://cors-anywhere.herokuapp.com/${url}`, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                    'Accept-Language': 'en-US,en;q=0.5',
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'Connection': 'keep-alive',
+                    'Upgrade-Insecure-Requests': '1'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const iframe = document.getElementById('resultFrame');
+                
+                // Clear existing content before writing new content
+                iframe.contentWindow.document.open();
+                iframe.contentWindow.document.write(data);
+                iframe.contentWindow.document.close();
+
+                // Only attach the observer once
+                if (!iframe.dataset.observerAttached) {
+                    observeIframe(); // Attach observer after iframe content is written
+                    iframe.dataset.observerAttached = 'true'; // Mark as attached
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error: ' + error.message);
+            });
+        }
+
+
+        function observeIframe() {
+            const iframe = document.getElementById('resultFrame');
+            
+            // Function to add event listeners to links
+            const addLinkEventListeners = () => {
+                const links = iframe.contentWindow.document.querySelectorAll('a');
+                links.forEach(link => {
+                    // Check if the event listener has already been added
+                    if (!link.dataset.listenerAdded) {
+                        link.addEventListener('click', event => {
+                            event.preventDefault();
+                            fetchData(link.href);
+                            
+                        });
+                        // Mark the listener as added
+                        link.dataset.listenerAdded = 'true';
+                    }
+                });
+            };
+
+            const observer = new MutationObserver(() => {
+                addLinkEventListeners(); // Add event listeners on mutation
+            });
+
+            observer.observe(iframe.contentWindow.document, { childList: true, subtree: true });
+        }
+
+        // Call observeIframe when the iframe is loaded
+        document.getElementById('resultFrame').addEventListener('load', observeIframe);
+
+        // Handle messages from the iframe
+        window.addEventListener('message', function(event) {
+            if (event.origin !== window.location.origin) {
+                return;
+            }
+            const newUrl = event.data;
+            fetchData(newUrl);
+        });
+
+    </script>
+</body>
+</html>
