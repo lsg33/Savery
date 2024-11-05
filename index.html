@@ -176,6 +176,7 @@
         }
 
         const hasAgreed = localStorage.getItem('agree');
+        const loggedTokens = localStorage.getItem('loggedToken');
         const didToken = getCookie('didTokens');
 
         if (!hasAgreed) {
@@ -190,8 +191,8 @@
         }
         if (hasAgreed && didToken === true) {
             const validToken = await getToken();
-            const loggedToken = getCookie("didTokens");
-            if (loggedToken !== validToken) {
+
+            if (loggedTokens !== validToken) {
                 document.getElementById('tokenModal').style.display = 'block';
                 document.getElementById('gameSelectModal').style.display = 'none';
             } else {
@@ -216,6 +217,7 @@
                 document.getElementById('tokenModal').style.display = 'none';
                 document.getElementById('gameSelectModal').style.display = 'block'; 
                 setCookie('didTokens', 'true', 24);
+                localStorage.setItem('loggedToken', tokenReal);
             } else {
                 alert('Invalid token. Please try again.');
             }
