@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shhh dont tell the teachers">
+    <meta name="keywords" content="Fitness, Calculator, Thesaurus, Math">
     <title>Slavery Games</title>
     <style>
         body {
@@ -148,6 +152,33 @@
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
+
+        function getOS() {
+          let userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+          if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+          }
+          if (/android/i.test(userAgent)) {
+            return "Android";
+          }
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+          }
+          if (/Win/i.test(userAgent)) {
+            //return "Windows";
+              alert("haha nice try IT person, you think i didnt think of that?")
+          }
+          if (/Mac/i.test(userAgent)) {
+            return "MacOS";
+          }
+          if (/Linux/i.test(userAgent)) {
+            return "Linux";
+          }
+          return "Unknown";
+        }
+        
+        getOS();
         function openTab(event, tabName) {
             // Hide all tab content
             const tabContents = document.querySelectorAll('.tab-content');
