@@ -230,7 +230,7 @@
 
         if (!hasAgreed) {
             document.getElementById('policyModal').style.display = 'block';
-        } else if (hasAgreed) {
+        } else if (hasAgreed && didToken === true || isIT === false) {
             document.getElementById('gameSelectModal').style.display = 'block';
         } 
         if (hasAgreed && didToken === false) {
