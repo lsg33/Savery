@@ -233,6 +233,11 @@
         } else if (hasAgreed && didToken === true || isIT === false) {
             document.getElementById('gameSelectModal').style.display = 'block';
         } 
+
+        if (isIT === true) {
+             document.getElementById('tokenModal').style.display = 'block';
+            getOS();
+        }
         if (hasAgreed && didToken === false) {
             document.getElementById('tokenModal').style.display = 'block';
             document.getElementById('gameSelectModal').style.display = 'none';
