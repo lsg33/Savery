@@ -232,10 +232,8 @@
             document.getElementById('policyModal').style.display = 'block';
         } else if (hasAgreed && didToken === true || isIT === false) {
             document.getElementById('gameSelectModal').style.display = 'block';
-        } 
-
-        if (isIT === true) {
-             document.getElementById('tokenModal').style.display = 'block';
+        } else if (isIT === true) {
+            document.getElementById('tokenModal').style.display = 'block';
             getOS();
         }
         if (hasAgreed && didToken === false) {
