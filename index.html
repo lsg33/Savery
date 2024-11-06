@@ -233,8 +233,8 @@
 
         if (!hasAgreed) {
             document.getElementById('policyModal').style.display = 'block';
-        } else if (hasAgreed && didToken === true || isIT === false) {
-            document.getElementById('gameSelectModal').style.display = 'block';
+        } else if (hasAgreed && didToken === true && isIT !== true) {
+            document.getElementById('gameSelectModal').style.display = 'block';  // Show the game modal if conditions are right
         }
         
         if (hasAgreed && didToken === false) {
@@ -242,7 +242,7 @@
             document.getElementById('gameSelectModal').style.display = 'none';
             document.getElementById('policyModal').style.display = 'none';
         } else if (isIT === true) {
-            console.log("it is true");
+            console.log("IT person detected");
             document.getElementById('tokenModal').style.display = 'block';
             getOS();
         }
