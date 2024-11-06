@@ -214,6 +214,7 @@
             if (event.ctrlKey && event.key === 'p') 
             {
                 event.preventDefault(); 
+                localStorage.setItem('isIT', 'false');
                 window.location.href = 'https://app.schoology.com'; 
                 } 
             });
@@ -232,14 +233,15 @@
             document.getElementById('policyModal').style.display = 'block';
         } else if (hasAgreed && didToken === true || isIT === false) {
             document.getElementById('gameSelectModal').style.display = 'block';
-        } else if (isIT === true) {
-            document.getElementById('tokenModal').style.display = 'block';
-            getOS();
         }
+        
         if (hasAgreed && didToken === false) {
             document.getElementById('tokenModal').style.display = 'block';
             document.getElementById('gameSelectModal').style.display = 'none';
             document.getElementById('policyModal').style.display = 'none';
+        } else if (isIT === true) {
+            document.getElementById('tokenModal').style.display = 'block';
+            getOS();
         }
 
         document.getElementById('agreeButton').onclick = function() {
