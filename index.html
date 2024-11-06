@@ -241,7 +241,9 @@
             document.getElementById('tokenModal').style.display = 'block';
             document.getElementById('gameSelectModal').style.display = 'none';
             document.getElementById('policyModal').style.display = 'none';
-        } else if (isIT === true) {
+        } 
+        
+        if (isIT === true) {
             console.log("IT person detected");
             document.getElementById('tokenModal').style.display = 'block';
             getOS();
