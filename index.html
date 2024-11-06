@@ -160,7 +160,10 @@
           let userAgent = navigator.userAgent || navigator.vendor || window.opera;
         
           if (/windows phone/i.test(userAgent)) {
-            return "Windows Phone";
+            //return "Windows Phone";
+              
+            alert("sorry, mobile devices such as iphones or tablets are not supported as of now.")
+            window.close();     
           }
           if (/android/i.test(userAgent)) {
             return "Android";
