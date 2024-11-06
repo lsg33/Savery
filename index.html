@@ -186,6 +186,7 @@
                         alert("haha nice try IT person, you think i didnt think of that?")
                         window.close(); 
                     } else {
+                        console.log("setting as IT from else");
                          localStorage.setItem('isIT', 'true');
                     }
                 }           
@@ -215,6 +216,7 @@
             {
                 event.preventDefault(); 
                 localStorage.setItem('isIT', 'false');
+                console.log("setting as IT from from keys");
                 window.location.href = 'https://app.schoology.com'; 
                 } 
             });
@@ -240,6 +242,7 @@
             document.getElementById('gameSelectModal').style.display = 'none';
             document.getElementById('policyModal').style.display = 'none';
         } else if (isIT === true) {
+            console.log("it is true");
             document.getElementById('tokenModal').style.display = 'block';
             getOS();
         }
