@@ -163,11 +163,23 @@
             return "Android";
           }
           if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            return "iOS";
+            //return "iOS";
+
+              alert("sorry, mobile devices such as iphones or tablets are not supported as of now.")
+              window.close();             
           }
           if (/Win/i.test(userAgent)) {
             //return "Windows";
-              alert("haha nice try IT person, you think i didnt think of that?")
+
+                if (hasAgreed && didToken === false) {
+
+                    if (isIT) {
+                        alert("haha nice try IT person, you think i didnt think of that?")
+                        window.close(); 
+                    } else {
+                         localStorage.setItem('isIT', 'true');
+                    }
+                }           
           }
           if (/Mac/i.test(userAgent)) {
             return "MacOS";
@@ -179,6 +191,7 @@
         }
         
         getOS();
+        
         function openTab(event, tabName) {
             // Hide all tab content
             const tabContents = document.querySelectorAll('.tab-content');
@@ -208,6 +221,7 @@
 
         const hasAgreed = localStorage.getItem('agree');
         const didToken = getCookie('didTokens');
+        const isIT = localStorage.getItem('isIT');
 
         if (!hasAgreed) {
             document.getElementById('policyModal').style.display = 'block';
