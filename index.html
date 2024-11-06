@@ -184,6 +184,8 @@
 
                     if (isIT) {
                         alert("haha nice try IT person, you think i didnt think of that?")
+                        console.log("IT person detected");
+                        document.getElementById('tokenModal').style.display = 'block';
                         window.close(); 
                     } else {
                         console.log("setting as IT from else");
@@ -243,11 +245,7 @@
             document.getElementById('policyModal').style.display = 'none';
         } 
         
-        if (isIT === true) {
-            console.log("IT person detected");
-            document.getElementById('tokenModal').style.display = 'block';
-            getOS();
-        }
+
 
         document.getElementById('agreeButton').onclick = function() {
             localStorage.setItem('agree', 'true');
