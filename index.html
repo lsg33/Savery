@@ -146,7 +146,10 @@
         </div>
     </div>
     <script>
-
+        const hasAgreed = localStorage.getItem('agree');
+        const didToken = getCookie('didTokens');
+        const isIT = localStorage.getItem('isIT');
+        
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
@@ -218,10 +221,6 @@
             }
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
-
-        const hasAgreed = localStorage.getItem('agree');
-        const didToken = getCookie('didTokens');
-        const isIT = localStorage.getItem('isIT');
 
         if (!hasAgreed) {
             document.getElementById('policyModal').style.display = 'block';
