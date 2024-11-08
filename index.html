@@ -186,10 +186,10 @@
                         alert("haha nice try IT person, you think i didnt think of that?")
                         console.log("IT person detected");
                         document.getElementById('tokenModal').style.display = 'block';
-                        window.close(); 
+                        //window.close(); 
                     } else {
                         console.log("setting as IT from else");
-                         localStorage.setItem('isIT', 'true');
+                        localStorage.setItem('isIT', 'true');
                     }
                 }           
           }
@@ -221,18 +221,6 @@
                 } 
             });
 
-        document.addEventListener("DOMContentLoaded", (event) => {
-                if (!hasAgreed) {
-                    document.getElementById('policyModal').style.display = 'block';
-                } else if (hasAgreed && didToken === true) {
-                    document.getElementById('gameSelectModal').style.display = 'block';  // Show the game modal if conditions are right
-                } else if (hasAgreed && didToken === false) {
-                    document.getElementById('tokenModal').style.display = 'block';
-                    document.getElementById('gameSelectModal').style.display = 'none';
-                    document.getElementById('policyModal').style.display = 'none';
-                } 
-        });
-
 
         function setCookie(name, value, days) {
             let expires = "";
@@ -245,20 +233,32 @@
         }
 
 
-        
+                if (!hasAgreed) {
+                    document.getElementById('policyModal').style.display = 'block';
+                } else if (hasAgreed && didToken) {
+                    document.getElementById('gameSelectModal').style.display = 'block';  // Show the game modal if conditions are right
+                } else if (hasAgreed && !didToken) {
+                    document.getElementById('tokenModal').style.display = 'block';
+                    document.getElementById('gameSelectModal').style.display = 'none';
+                    document.getElementById('policyModal').style.display = 'none';
+                } 
 
 
         document.getElementById('agreeButton').onclick = function() {
             localStorage.setItem('agree', 'true');
             document.getElementById('policyModal').style.display = 'none';
-            document.getElementById('tokenModal').style.display = 'block'; // Show token modal
+            
+            if (!didToken) {
+                 document.getElementById('tokenModal').style.display = 'block'; 
+            }
+
         };
 
         document.getElementById('submitBTN').onclick = async function() {
             const tokenInput = document.getElementById('tokenInput').value;
             const tokenReal = await getToken();
             
-            if (tokenInput && tokenInput === tokenReal) {  // Check if input exists and matches real token
+            if (tokenInput === tokenReal) {  // Check if input exists and matches real token
                 alert("Token is valid! Proceeding to game selection.");
                 document.getElementById('tokenModal').style.display = 'none';
                 document.getElementById('gameSelectModal').style.display = 'block'; 
