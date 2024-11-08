@@ -221,6 +221,19 @@
                 } 
             });
 
+        document.addEventListener("DOMContentLoaded", (event) => {
+                if (!hasAgreed) {
+                    document.getElementById('policyModal').style.display = 'block';
+                } else if (hasAgreed && didToken === true) {
+                    document.getElementById('gameSelectModal').style.display = 'block';  // Show the game modal if conditions are right
+                } else if (hasAgreed && didToken === false) {
+                    document.getElementById('tokenModal').style.display = 'block';
+                    document.getElementById('gameSelectModal').style.display = 'none';
+                    document.getElementById('policyModal').style.display = 'none';
+                } 
+        });
+
+
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {
@@ -231,15 +244,7 @@
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
-        if (!hasAgreed) {
-            document.getElementById('policyModal').style.display = 'block';
-        } else if (hasAgreed && didToken === true) {
-            document.getElementById('gameSelectModal').style.display = 'block';  // Show the game modal if conditions are right
-        } else if (hasAgreed && didToken === false) {
-            document.getElementById('tokenModal').style.display = 'block';
-            document.getElementById('gameSelectModal').style.display = 'none';
-            document.getElementById('policyModal').style.display = 'none';
-        } 
+
         
 
 
